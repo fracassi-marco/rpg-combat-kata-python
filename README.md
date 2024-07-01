@@ -1,7 +1,5 @@
 RPG Combat Kata
 ================
-Source: [https://github.com/ardalis/kata-catalog](https://github.com/ardalis/kata-catalog)
-
 # Background #
 
 This is a fun kata that has the programmer building simple combat rules, as for a role-playing game (RPG). It is implemented as a sequence of iterations. The domain doesn't include a map or any other character skills apart from their ability to damage and heal one another.
