@@ -9,8 +9,17 @@ from src.levels_below_mine import LevelsBelowMine
 
 class Character:
 
-    def __init__(self, level: int = 1):
+    @classmethod
+    def melee(cls):
+        return Character(max_range=2)
+
+    @classmethod
+    def ranged(cls):
+        return Character(max_range=20)
+
+    def __init__(self, level: int = 1, max_range: int = 1000):
         self.level = level
+        self.max_range = max_range
         self.health = 1000
 
     def is_alive(self):

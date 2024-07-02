@@ -56,3 +56,11 @@ class CharactersTest(unittest.TestCase):
         character3 = Character(6)
         character3.damage(self.character1, 100)
         self.assertEqual(self.character1.health, 850)
+
+    def test_melee_fighters_have_range_of_2_meters(self):
+        character = Character.melee()
+        self.assertEqual(character.max_range, 2)
+
+    def test_ranged_fighters_have_range_of_20_meters(self):
+        character = Character.ranged()
+        self.assertEqual(character.max_range, 20)
