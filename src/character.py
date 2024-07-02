@@ -5,28 +5,31 @@ from src.is_me import IsMe
 from src.is_not_me import IsNotMe
 from src.levels_above_mine import LevelsAboveMine
 from src.levels_below_mine import LevelsBelowMine
+from src.not_in_range import NotInRange
 
 
 class Character:
 
     @classmethod
-    def melee(cls):
-        return Character(max_range=2)
+    def melee(cls, position: int = 1000):
+        return Character(max_range=2, position=position)
 
     @classmethod
-    def ranged(cls):
-        return Character(max_range=20)
+    def ranged(cls, position: int = 1000):
+        return Character(max_range=20, position=position)
 
-    def __init__(self, level: int = 1, max_range: int = 1000):
+    def __init__(self, level: int = 1, max_range: int = 1000, position: int = 0):
         self.level = level
         self.max_range = max_range
         self.health = 1000
+        self.position = position
 
     def is_alive(self):
         return self.health > 0
 
     def damage(self, target, amount: int):
-        rules = [IsMe(self, target),
+        rules = [NotInRange(self, target),
+                 IsMe(self, target),
                  LevelsAboveMine(self, target, 5),
                  LevelsBelowMine(self, target, 5),
                  DefaultDamage(self, target)]

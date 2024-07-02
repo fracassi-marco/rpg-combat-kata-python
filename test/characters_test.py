@@ -64,3 +64,9 @@ class CharactersTest(unittest.TestCase):
     def test_ranged_fighters_have_range_of_20_meters(self):
         character = Character.ranged()
         self.assertEqual(character.max_range, 20)
+
+    def test_characters_must_be_in_range_to_deal_damage_to_a_target(self):
+        attacker = Character.ranged(position=65)
+        target = Character(position=10)
+        attacker.damage(target, 100)
+        self.assertEqual(target.health, 1000)
