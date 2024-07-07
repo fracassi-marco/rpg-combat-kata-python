@@ -1,5 +1,6 @@
 from src.default_damage import DefaultDamage
 from src.default_heal import DefaultHeal
+from src.is_allie import IsAllie
 from src.is_dead import IsDead
 from src.is_me import IsMe
 from src.is_not_me import IsNotMe
@@ -40,15 +41,16 @@ class Character:
 
     def heal(self, target, amount: int):
         rules = [IsDead(self, target),
+                 IsAllie(self, target),
                  IsNotMe(self, target),
                  DefaultHeal(self, target)]
         self.__apply_first(amount, rules, target)
+
+    def joinFaction(self, faction):
+        return Character(level=self.level, max_range=self.max_range, position=self.position, factions=self.factions + [faction])
 
     def __apply_first(self, amount, rules, target):
         for rule in rules:
             if rule.is_valid():
                 target.health = rule.target_health(amount)
                 break
-
-    def joinFaction(self, faction):
-        return Character(level=self.level, max_range=self.max_range, position=self.position, factions=self.factions + [faction])

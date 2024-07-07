@@ -81,3 +81,18 @@ class TestCharacters:
         target = Character().joinFaction("bar")
         attacker.damage(target, 100)
         assert target.health == 900
+
+    def test_allies_heal_one_another(self):
+        attacker = Character(factions=["bar"])
+        attacker1 = Character(factions=["foo"])
+        target = Character().joinFaction("foo")
+        attacker.damage(target, 500)
+        attacker1.heal(target, 100)
+        assert target.health == 600
+
+    def test_not_allies_cannot_heal_one_another(self):
+        attacker = Character(factions=["bar"])
+        target = Character().joinFaction("foo")
+        attacker.damage(target, 500)
+        attacker.heal(target, 100)
+        assert target.health == 500
