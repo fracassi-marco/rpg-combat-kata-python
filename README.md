@@ -82,3 +82,8 @@ This is a fun kata that has the programmer building simple combat rules, as for 
 # Resources #
 
 - Original Source: http://www.slideshare.net/DanielOjedaLoisel/rpg-combat-kata
+
+# Run tests #
+```
+python -m pytest
+```
