@@ -87,3 +87,8 @@ This is a fun kata that has the programmer building simple combat rules, as for 
 ```
 python -m pytest
 ```
+
+# Run tests with code coverage #
+```
+coverage run -m pytest && coverage report
+```
